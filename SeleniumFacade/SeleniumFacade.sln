@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32616.157
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeleniumFacade", "SeleniumFacade\SeleniumFacade.csproj", "{72F8F347-8F8B-45DA-9B30-7158F3E072F4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeleniumFacadeTests", "SeleniumFacadeTests\SeleniumFacadeTests.csproj", "{94FFB3CC-1833-462E-9B04-00E287DF76E3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{72F8F347-8F8B-45DA-9B30-7158F3E072F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72F8F347-8F8B-45DA-9B30-7158F3E072F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72F8F347-8F8B-45DA-9B30-7158F3E072F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72F8F347-8F8B-45DA-9B30-7158F3E072F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94FFB3CC-1833-462E-9B04-00E287DF76E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94FFB3CC-1833-462E-9B04-00E287DF76E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94FFB3CC-1833-462E-9B04-00E287DF76E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94FFB3CC-1833-462E-9B04-00E287DF76E3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EC4B92D5-74B9-4FCE-B765-3FDDAFBFBE2B}
+	EndGlobalSection
+EndGlobal

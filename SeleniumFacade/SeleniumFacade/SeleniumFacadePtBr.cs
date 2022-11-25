@@ -20,7 +20,8 @@ namespace SeleniumFacade
           chromeOptions.AddArguments("headless");
           chromeDriverService.HideCommandPromptWindow = true;
         }
-        driver = new ChromeDriver(chromeDriverService);
+        driver = new ChromeDriver(chromeOptions);
+
 
         if (permitirDownload)
         {
@@ -42,14 +43,8 @@ namespace SeleniumFacade
 
     public static void fechaDriver(IWebDriver driver)
     {
-      try
-      {
         driver.Close();
         driver.Quit();
-      }
-      catch (Exception)
-      {
-      };
     }
   }
 }

@@ -7,16 +7,41 @@ namespace SeleniumFacadeTests
   public class SeleniumFacadeTest : IDisposable
   {
     public IWebDriver driver;
+
     [Fact (DisplayName ="criaDriver deve retornar um driver criado")]
     public void criaDriver()
     {
+      //Arrange
+      //Act
       driver = SeleniumFacadePtBr.criaDriver();
+
+      //Assert
       Assert.NotNull(driver);
+    }
+
+    [Fact(DisplayName = "fechaDriver deve fechar o driver")]
+    public void fechaDriver()
+    {
+      //Arrange
+      driver = SeleniumFacadePtBr.criaDriver();
+
+      //Act
+      SeleniumFacadePtBr.fechaDriver(driver);
+
+      //Assert
+      Assert.Throws<ObjectDisposedException>(() => SeleniumFacadePtBr.fechaDriver(driver));
     }
 
     public void Dispose()
     {
-      SeleniumFacadePtBr.fechaDriver(driver);
+      try
+      {
+        SeleniumFacadePtBr.fechaDriver(driver);
+      }
+      catch (Exception)
+      {
+        //Ja fechado
+      }
     }
   }
 }

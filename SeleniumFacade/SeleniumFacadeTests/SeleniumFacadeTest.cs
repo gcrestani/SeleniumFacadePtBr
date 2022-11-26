@@ -32,6 +32,25 @@ namespace SeleniumFacadeTests
       Assert.Throws<ObjectDisposedException>(() => SeleniumFacadePtBr.fechaDriver(driver));
     }
 
+
+    [Fact(DisplayName = "enviarEnterSemElemento deve pressionar a tecla enter sem selecionar nenhum elemento")]
+    public void enviarEnterSemElemento()
+    {
+      //Arrange
+      driver = SeleniumFacadePtBr.criaDriver();
+      var solutionDir = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
+      SeleniumFacadePtBr.navegarPara(driver, @"{solutionDir}/Web/enviarEnterSemElemento.html");
+
+      //Act
+      SeleniumFacadePtBr.enviarEnterSemElemento(driver);
+
+      //Assert
+      var textoDoElemento = SeleniumFacadePtBr.retornarTextoPorId(driver, "enterDetectado");
+      Assert.Equal("Botão acionado", textoDoElemento);
+    }
+
+    
+
     public void Dispose()
     {
       try

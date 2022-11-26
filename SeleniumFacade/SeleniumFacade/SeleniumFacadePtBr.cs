@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Interactions;
+using OpenQA.Selenium.Support.UI;
 using Keys = OpenQA.Selenium.Keys;
 
 namespace SeleniumFacade
@@ -24,7 +25,6 @@ namespace SeleniumFacade
         }
         driver = new ChromeDriver(chromeOptions);
 
-
         if (permitirDownload)
         {
           var enableDownloadCommandParameters = new Dictionary<string, object>
@@ -43,11 +43,6 @@ namespace SeleniumFacade
       return driver;
     }
 
-    public static void navegarPara(IWebDriver driver, string v)
-    {
-      throw new NotImplementedException();
-    }
-
     public static void fechaDriver(IWebDriver driver)
     {
         driver.Close();
@@ -60,17 +55,23 @@ namespace SeleniumFacade
       builder.KeyDown(Keys.Return).Build().Perform();
       builder.KeyUp(Keys.Return).Build().Perform();
     }
-    public static object retornarTextoPorId(IWebDriver driver, string v)
+    public static object retornarTextoPorId(IWebDriver driver, string id)
     {
       try
       {
-        throw new NotImplementedException();
+        return driver.FindElement(By.Id(id)).Text;
       }
-      catch (Exception)
+      catch (System.Exception)
       {
-        throw;
+        return "";
       }
-      
+    }
+    public static bool navegarPara(IWebDriver driver, string url)
+    {
+      driver.Navigate().GoToUrl(url);
+      new WebDriverWait(driver, new TimeSpan(0, 0, 3)).Until(
+      d => ((IJavaScriptExecutor)d).ExecuteScript("return document.readyState").Equals("complete"));
+      return true;
     }
   }
 }

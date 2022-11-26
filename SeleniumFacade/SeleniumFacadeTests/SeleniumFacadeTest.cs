@@ -7,6 +7,13 @@ namespace SeleniumFacadeTests
   public class SeleniumFacadeTest : IDisposable
   {
     public IWebDriver driver;
+    public string siteTeste;
+
+    public SeleniumFacadeTest()
+    {
+      var solutionDir = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.FullName;
+      siteTeste = $"{solutionDir}\\Web\\seleniumTests.html";
+    }
 
     [Fact (DisplayName ="criaDriver deve retornar um driver criado")]
     public void criaDriver()
@@ -38,8 +45,7 @@ namespace SeleniumFacadeTests
     {
       //Arrange
       driver = SeleniumFacadePtBr.criaDriver();
-      var solutionDir = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
-      SeleniumFacadePtBr.navegarPara(driver, @"{solutionDir}/Web/enviarEnterSemElemento.html");
+      SeleniumFacadePtBr.navegarPara(driver, siteTeste);
 
       //Act
       SeleniumFacadePtBr.enviarEnterSemElemento(driver);
@@ -49,6 +55,49 @@ namespace SeleniumFacadeTests
       Assert.Equal("Botão acionado", textoDoElemento);
     }
 
+
+    [Fact(DisplayName = "retornarTextoPorId deve retornar o conteudo em texto de um elemento")]
+    public void retornarTextoPorId()
+    {
+      //Arrange
+      driver = SeleniumFacadePtBr.criaDriver();
+      SeleniumFacadePtBr.navegarPara(driver, siteTeste);
+
+      //Act
+      var texto = SeleniumFacadePtBr.retornarTextoPorId(driver, "divComTexto");
+
+      //Assert
+      Assert.Equal("Texto dentro de uma div.", texto);
+    }
+
+    [Fact(DisplayName = "retornarTextoPorId deve retornar vazio para um elemento inexistente")]
+    public void retornarTextoPorIdInexistente()
+    {
+      //Arrange
+      driver = SeleniumFacadePtBr.criaDriver();
+      SeleniumFacadePtBr.navegarPara(driver, siteTeste);
+
+      //Act
+      var texto = SeleniumFacadePtBr.retornarTextoPorId(driver, "idInexistente");
+
+      //Assert
+      Assert.Equal("", texto);
+    }
+
+
+    [Fact(DisplayName = "navegarPara deve acessar o site passado por parametro")]
+    public void navegarPara()
+    {
+      //Arrange
+      driver = SeleniumFacadePtBr.criaDriver();
+
+      //Act
+      SeleniumFacadePtBr.navegarPara(driver, siteTeste);
+
+      //Assert
+      var urlFormatada = driver.Url.Replace("file:///", "").Replace("/", "\\");
+      Assert.Equal(siteTeste, urlFormatada);
+    }
     
 
     public void Dispose()

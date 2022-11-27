@@ -98,7 +98,53 @@ namespace SeleniumFacadeTests
       var urlFormatada = driver.Url.Replace("file:///", "").Replace("/", "\\");
       Assert.Equal(siteTeste, urlFormatada);
     }
-    
+
+    [Fact(DisplayName = "limpaTextPorId deve apagar o texto de um input do tipo text")]
+    public void limpaTextPorId()
+    {
+      //Arrange
+      driver = SeleniumFacadePtBr.criaDriver();
+      SeleniumFacadePtBr.navegarPara(driver, siteTeste);
+
+      //Act
+      SeleniumFacadePtBr.limpaTextPorId(driver, "inputText");
+
+      //Assert
+      var textoDoInput = SeleniumFacadePtBr.retornarValuePorId(driver, "inputText");
+      Assert.Equal("", textoDoInput);
+    }
+
+    [Fact(DisplayName = "preencherTextPorId deve preencher um input do tipo text")]
+    public void preencherTextPorId()
+    {
+      //Arrange
+      var texto = "texto do input";
+      driver = SeleniumFacadePtBr.criaDriver();
+      SeleniumFacadePtBr.navegarPara(driver, siteTeste);
+      SeleniumFacadePtBr.limpaTextPorId(driver, "inputText");
+
+      //Act
+      SeleniumFacadePtBr.preencherTextPorId(driver, texto, "inputText");
+
+      //Assert
+      var textoDoInput = SeleniumFacadePtBr.retornarValuePorId(driver, "inputText");
+      Assert.Equal(texto, textoDoInput);
+    }
+
+    [Fact(DisplayName = "retornarValuePorId deve retornar o valor de um input do tipo text")]
+    public void retornarValuePorId()
+    {
+      //Arrange
+      var textoInicial = "Digite aqui";
+      driver = SeleniumFacadePtBr.criaDriver();
+      SeleniumFacadePtBr.navegarPara(driver, siteTeste);
+
+      //Act
+      //Assert
+      var textoDoInput = SeleniumFacadePtBr.retornarValuePorId(driver, "inputText");
+      Assert.Equal(textoInicial, textoDoInput);
+    }
+
 
     public void Dispose()
     {
